@@ -1,12 +1,12 @@
-# 🕌 Allah Everywhere - Islamic Companion App<p align="center"><div align="center"># ALLAH EVERYWHERE - Islamic Mobile Application# Allah Every Where - Islamic Flutter App# ALLAH EVERYWHERE - Islamic Mobile Application# allah_every_where
+# 🕌 Allah Everywhere - Islamic Companion App# 🕌 Allah Everywhere - Islamic Companion App<p align="center"><div align="center"># ALLAH EVERYWHERE - Islamic Mobile Application# Allah Every Where - Islamic Flutter App# ALLAH EVERYWHERE - Islamic Mobile Application# allah_every_where
 
 
 
-> A comprehensive, feature-rich Flutter application providing Muslims with essential religious tools and resources for spiritual guidance and daily Islamic practice.  <img src="https://raw.githubusercontent.com/AbduLlAh72727272/ALLAH_EVERYWHERE/main/assets/icons/app_icon.png" alt="Allah Everywhere" width="120" height="120">
+> A beautiful, feature-rich Flutter application for discovering Islamic knowledge, managing prayers, and connecting with authentic Islamic content with a premium spiritual experience.
 
 
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.5.1-blue.svg)](https://flutter.dev)</p>
+[![Flutter](https://img.shields.io/badge/Flutter-3.5.1-blue.svg)](https://flutter.dev)> A comprehensive, feature-rich Flutter application providing Muslims with essential religious tools and resources for spiritual guidance and daily Islamic practice.  <img src="https://raw.githubusercontent.com/AbduLlAh72727272/ALLAH_EVERYWHERE/main/assets/icons/app_icon.png" alt="Allah Everywhere" width="120" height="120">
 
 [![Dart](https://img.shields.io/badge/Dart-3.2+-blue.svg)](https://dart.dev)
 
@@ -14,237 +14,483 @@
 
 
 
-## ✨ Features<h1 align="center">🕌 Allah Everywhere</h1># 🕌 ALLAH EVERYWHERE 🌙
+## ✨ Features[![Flutter](https://img.shields.io/badge/Flutter-3.5.1-blue.svg)](https://flutter.dev)</p>
 
 
 
-### 🚀 **Core Functionality**
+### 🚀 **Core Functionality**[![Dart](https://img.shields.io/badge/Dart-3.2+-blue.svg)](https://dart.dev)
 
 - **Prayer Times**: Accurate prayer timings with multiple calculation methods
 
-- **Holy Quran**: Complete Quran with Arabic text and multiple translations<p align="center">### *Your Complete Islamic Companion*
+- **Holy Quran**: Complete Quran with beautiful Arabic text and translations[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-- **Authentic Hadith**: Major collections (Bukhari, Muslim, Abu Dawood, etc.)
+- **Authentic Hadith**: Browse major collections with original Arabic text
 
-- **Qibla Direction**: Compass-integrated Mecca direction finder  <strong>Your Ultimate Islamic Companion App</strong>
+- **Qibla Direction**: Compass-integrated direction finder for prayer
 
-- **Islamic Calendar**: Hijri dates with important Islamic events
+- **Islamic Calendar**: Hijri calendar with important Islamic dates
 
-- **Scholar Consultation**: Live chat with qualified Islamic scholars</p><div align="center">
+- **Scholar Consultation**: Live chat with qualified Islamic scholars## ✨ Features<h1 align="center">🕌 Allah Everywhere</h1># 🕌 ALLAH EVERYWHERE 🌙
 
 
 
 ### 🎨 **User Experience**
 
-- **Beautiful UI**: Islamic-themed design with elegant Arabic typography
+- **Smooth Authentication**: Complete login, signup, and password recovery
 
-- **Audio Recitation**: Listen to Quran recitations by renowned Qaris<p align="center">![Islamic Banner](https://img.shields.io/badge/🕋-ISLAMIC%20APP-green?style=for-the-badge&labelColor=darkgreen)
+- **Professional UI**: Islamic design with custom gradients and Arabic typography### 🚀 **Core Functionality**
 
 - **Prayer Tracking**: Mark completed prayers and build spiritual habits
 
-- **Bookmarking System**: Save favorite verses and Hadith for quick access  <img src="https://img.shields.io/github/v/release/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=green" alt="Version">
+- **Audio Recitation**: In-app Quran recitation with multiple Qaris- **Prayer Times**: Accurate prayer timings with multiple calculation methods
 
-- **Offline Support**: Access Islamic content without internet connection
+- **Responsive Design**: Optimized for all screen sizes and orientations
 
-- **Multi-language**: Support for Arabic, English, Urdu, and more  <img src="https://img.shields.io/github/stars/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=yellow" alt="Stars">![Version](https://img.shields.io/badge/VERSION-2.0-gold?style=for-the-badge)  
-
-
-
-### 🔥 **Premium Features**  <img src="https://img.shields.io/github/forks/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=blue" alt="Forks">
-
-- **Smart Notifications**: Customizable prayer time alerts with Adhan
-
-- **Advanced Search**: Find Quranic verses and Hadith by keywords or topics  <img src="https://img.shields.io/github/license/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=orange" alt="License">![Status](https://img.shields.io/badge/STATUS-ACTIVE-brightgreen?style=for-the-badge)
-
-- **Reading Progress**: Track your Quran reading journey with statistics
-
-- **Islamic Knowledge**: Duas, 99 Names of Allah, and Fiqh guidance</p>
-
-- **Community Features**: Connect with fellow Muslims worldwide
-
-- **Verse Highlighting**: Audio synchronization with Quranic text  [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)<div align="center">
+- **Islamic Theme**: Beautiful green-to-gold color schemes- **Holy Quran**: Complete Quran with Arabic text and multiple translations<p align="center">### *Your Complete Islamic Companion*
 
 
 
-## 🏗️ Architecture<p align="center">
+### 🔥 **Premium Features**- **Authentic Hadith**: Major collections (Bukhari, Muslim, Abu Dawood, etc.)
+
+- **Animated Splash Screen**: Professional app launch with Islamic motifs
+
+- **Smart Notifications**: Prayer time alerts with beautiful Adhan sounds- **Qibla Direction**: Compass-integrated Mecca direction finder  <strong>Your Ultimate Islamic Companion App</strong>
+
+- **Smooth Animations**: Fade, slide, and scale transitions throughout
+
+- **Loading States**: Elegant shimmer effects with Islamic patterns- **Islamic Calendar**: Hijri dates with important Islamic events
+
+- **Error Handling**: User-friendly error messages and retry mechanisms
+
+- **Navigation Flow**: Intuitive app navigation with smooth transitions- **Scholar Consultation**: Live chat with qualified Islamic scholars</p><div align="center">
 
 
 
-```  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter">[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
+## 🏗️ Architecture
+
+
+
+```### 🎨 **User Experience**
 
 lib/
 
-├── main.dart                    # App entry point  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase">
+├── main.dart                 # App entry point- **Beautiful UI**: Islamic-themed design with elegant Arabic typography
 
-├── models/                      # Data models
+├── models/                   # Data models
 
-│   ├── prayer_time.dart  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart">[![Firebase](https://img.shields.io/badge/Firebase-FF6B35?style=for-the-badge&logo=firebase&logoColor=white)](https://firebase.google.com/)  [![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com/)
+│   ├── prayer_time.dart- **Audio Recitation**: Listen to Quran recitations by renowned Qaris<p align="center">![Islamic Banner](https://img.shields.io/badge/🕋-ISLAMIC%20APP-green?style=for-the-badge&labelColor=darkgreen)
 
 │   ├── quran_verse.dart
 
-│   ├── hadith.dart</p>
+│   └── hadith.dart- **Prayer Tracking**: Mark completed prayers and build spiritual habits
 
-│   └── user.dart
+├── controllers/              # State management
 
-├── controllers/                 # State management (GetX)[![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
+│   ├── prayer_controller.dart- **Bookmarking System**: Save favorite verses and Hadith for quick access  <img src="https://img.shields.io/github/v/release/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=green" alt="Version">
 
-│   ├── prayer_controller.dart
+│   ├── quran_controller.dart
 
-│   ├── quran_controller.dart---
+│   ├── hadith_controller.dart- **Offline Support**: Access Islamic content without internet connection
 
-│   ├── hadith_controller.dart
+│   └── auth_controller.dart
 
-│   └── auth_controller.dart  [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)  <h3>A comprehensive Islamic companion app built with Flutter</h3>
+├── screens/                  # UI screens- **Multi-language**: Support for Arabic, English, Urdu, and more  <img src="https://img.shields.io/github/stars/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=yellow" alt="Stars">![Version](https://img.shields.io/badge/VERSION-2.0-gold?style=for-the-badge)  
 
-├── screens/                     # UI screens
-
-│   ├── splash_screen.dart## 📖 About
+│   ├── splash_screen.dart
 
 │   ├── home.dart
 
-│   ├── prayer_timing.dart**🎯 The Most Comprehensive Islamic Mobile Application**  
+│   ├── prayer_timing.dart
 
-│   ├── quran.dart
+│   ├── quran.dart### 🔥 **Premium Features**  <img src="https://img.shields.io/github/forks/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=blue" alt="Forks">
 
-│   ├── surah.dart**Allah Everywhere** is a comprehensive Islamic mobile application built with Flutter that brings the essence of Islam to your fingertips. Whether you're looking for accurate prayer times, reading the Holy Quran, exploring authentic Hadiths, or seeking guidance from Islamic scholars, this app serves as your complete spiritual companion.
+│   ├── surah.dart
 
-│   ├── hadith.dart
-
-│   ├── qibla.dart*Built with ❤️ for the Global Muslim Ummah*  
+│   ├── hadith.dart- **Smart Notifications**: Customizable prayer time alerts with Adhan
 
 │   ├── auth/
 
-│   │   ├── login.dart> *"And whoever relies upon Allah - then He is sufficient for him. Indeed, Allah will accomplish His purpose."* - **Quran 65:3**
+│   │   ├── login.dart- **Advanced Search**: Find Quranic verses and Hadith by keywords or topics  <img src="https://img.shields.io/github/license/AbduLlAh72727272/ALLAH_EVERYWHERE?style=flat-square&color=orange" alt="License">![Status](https://img.shields.io/badge/STATUS-ACTIVE-brightgreen?style=for-the-badge)
 
 │   │   ├── registration.dart
 
-│   │   └── forget_password.dart
+│   │   └── forget_password.dart- **Reading Progress**: Track your Quran reading journey with statistics
 
 │   └── profile/
 
-│       ├── profile.dart---
+│       ├── profile.dart- **Islamic Knowledge**: Duas, 99 Names of Allah, and Fiqh guidance</p>
 
 │       ├── settings.dart
 
-│       └── editprofilescreen.dart![Downloads](https://img.shields.io/badge/DOWNLOADS-10K+-success?style=flat-square)  <h3>A comprehensive Islamic companion app built with Flutter</h3>  <div align="center">A new Flutter project.
+│       └── editprofilescreen.dart- **Community Features**: Connect with fellow Muslims worldwide
 
-├── services/                    # Business logic & API services
+├── widgets/                  # Reusable components
 
-│   ├── QuranService.dart## ✨ Key Features
+│   ├── prayer_time_card.dart- **Verse Highlighting**: Audio synchronization with Quranic text  [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)<div align="center">
 
-│   ├── HadithService.dart
+│   ├── quran_verse_card.dart
 
-│   ├── PrayerService.dart![Rating](https://img.shields.io/badge/RATING-⭐⭐⭐⭐⭐-yellow?style=flat-square)
+│   ├── hadith_card.dart
 
-│   ├── AuthService.dart
+│   └── qibla_compass.dart
 
-│   └── ChatService.dart### 🕐 Prayer Times & Qibla
+└── services/                 # External services## 🏗️ Architecture<p align="center">
 
-└── widgets/                     # Reusable components
+    ├── QuranService.dart
 
-    ├── prayer_time_card.dart- **Accurate prayer timings** based on your location![Users](https://img.shields.io/badge/ACTIVE%20USERS-5K+-blue?style=flat-square)  
+    ├── HadithService.dart
 
-    ├── quran_verse_card.dart
+    └── PrayerService.dart
 
-    ├── hadith_card.dart- **Qibla direction** with compass integration  
-
-    └── qibla_compass.dart
-
-```- **Beautiful Adhan notifications** with multiple reciters
+``````  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter">[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
 
 
 
-## 🚀 Getting Started- **Monthly prayer calendar** view
+## 🚀 Getting Startedlib/
 
 
 
-### Prerequisites- **Prayer tracking** and habit building</div></div>  [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
+### Prerequisites├── main.dart                    # App entry point  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase">
 
 - **Flutter SDK**: 3.5.1 or higher
 
-- **Dart SDK**: 3.2 or higher
+- **Dart SDK**: 3.2 or higher├── models/                      # Data models
 
 - **Android Studio** / **VS Code** with Flutter extensions
 
-- **Firebase Account** for backend services### 📚 Holy Quran
-
-- **Git** for version control
-
-- **Complete Quran** with beautiful Arabic typography
-
-### Installation
-
-- **Multiple translations** in 20+ languages---
-
-1. **Clone the repository**
-
-   ```bash- **Audio recitations** by renowned Qaris
-
-   git clone https://github.com/AbduLlAh72727272/ALLAH_EVERYWHERE.git
-
-   cd ALLAH_EVERYWHERE- **Verse-by-verse highlighting** during audio playback
-
-   ```
-
-- **Bookmarks and notes** for personal study
-
-2. **Install dependencies**
-
-   ```bash- **Advanced search** by keywords or topics## 🌟 **Why Choose Allah Everywhere?**## 📖 About  [![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com/)  <h3>A comprehensive Islamic companion app built with Flutter</h3>
-
-   flutter pub get
-
-   ```
+- **Git** for version control│   ├── prayer_time.dart  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart">[![Firebase](https://img.shields.io/badge/Firebase-FF6B35?style=for-the-badge&logo=firebase&logoColor=white)](https://firebase.google.com/)  [![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com/)
 
 
 
-3. **Set up Firebase**### 📜 Authentic Hadiths
-
-   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-
-   - Add your `google-services.json` to `android/app/`- **Major collections**: Bukhari, Muslim, Abu Dawood, Tirmidhi, Nasai, Ibn Majah
-
-   - Add your `GoogleService-Info.plist` to `ios/Runner/`
-
-   - Update `lib/firebase_options.dart` with your configuration- **Original Arabic text** with accurate translations<table>
+### Installation│   ├── quran_verse.dart
 
 
 
-4. **Configure APIs**- **Topic-based categorization** for easy browsing
-
-   - The app uses multiple Islamic APIs (AlQuran.cloud, Hadith API, Aladhan)
-
-   - APIs are pre-configured but you can customize endpoints in services- **Hadith authenticity grading** (Sahih, Hasan, Daif)<tr>
-
-
-
-5. **Run the app**- **Personal favorites** and sharing capabilities
+1. **Clone the repository**│   ├── hadith.dart</p>
 
    ```bash
 
-   flutter run<td width="33%" align="center">Allah Everywhere is a comprehensive Islamic mobile application designed to provide Muslims with essential religious tools and resources. The app offers a seamless experience for prayer times, Quran reading, Islamic knowledge, and spiritual guidance.  [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
+   git clone https://github.com/AbduLlAh72727272/ALLAH_EVERYWHERE.git│   └── user.dart
+
+   cd ALLAH_EVERYWHERE
+
+   ```├── controllers/                 # State management (GetX)[![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
+
+
+
+2. **Install dependencies**│   ├── prayer_controller.dart
+
+   ```bash
+
+   flutter pub get│   ├── quran_controller.dart---
 
    ```
 
-### 🎓 Islamic Knowledge
+│   ├── hadith_controller.dart
 
-### Build for Production
+3. **Set up Firebase**
 
-- **99 Names of Allah** with meanings and benefits
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)│   └── auth_controller.dart  [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)  <h3>A comprehensive Islamic companion app built with Flutter</h3>
+
+   - Add your `google-services.json` to `android/app/`
+
+   - Add your `GoogleService-Info.plist` to `ios/Runner/`├── screens/                     # UI screens
+
+   - Update `lib/firebase_options.dart` with your configuration
+
+│   ├── splash_screen.dart## 📖 About
+
+4. **Run the app**
+
+   ```bash│   ├── home.dart
+
+   flutter run
+
+   ```│   ├── prayer_timing.dart**🎯 The Most Comprehensive Islamic Mobile Application**  
+
+
+
+### Build for Production│   ├── quran.dart
+
+
+
+```bash│   ├── surah.dart**Allah Everywhere** is a comprehensive Islamic mobile application built with Flutter that brings the essence of Islam to your fingertips. Whether you're looking for accurate prayer times, reading the Holy Quran, exploring authentic Hadiths, or seeking guidance from Islamic scholars, this app serves as your complete spiritual companion.
+
+# Android APK
+
+flutter build apk --release│   ├── hadith.dart
+
+
+
+# Android App Bundle│   ├── qibla.dart*Built with ❤️ for the Global Muslim Ummah*  
+
+flutter build appbundle --release
+
+│   ├── auth/
+
+# iOS (macOS required)
+
+flutter build ios --release│   │   ├── login.dart> *"And whoever relies upon Allah - then He is sufficient for him. Indeed, Allah will accomplish His purpose."* - **Quran 65:3**
+
+```
+
+│   │   ├── registration.dart
+
+## 🔧 Configuration
+
+│   │   └── forget_password.dart
+
+### API Setup
+
+The app uses multiple Islamic APIs for authentic content:│   └── profile/
+
+- **Base URL**: `https://api.alquran.cloud/v1` (Quran)
+
+- **Hadith API**: `https://api.hadith.gading.dev`│       ├── profile.dart---
+
+- **Prayer Times**: `https://api.aladhan.com/v1`
+
+- **Rate Limiting**: Respected as per API guidelines│       ├── settings.dart
+
+
+
+### Firebase Setup│       └── editprofilescreen.dart![Downloads](https://img.shields.io/badge/DOWNLOADS-10K+-success?style=flat-square)  <h3>A comprehensive Islamic companion app built with Flutter</h3>  <div align="center">A new Flutter project.
+
+For enhanced authentication and data storage:
+
+1. Create a Firebase project├── services/                    # Business logic & API services
+
+2. Add your `google-services.json` (Android) and `GoogleService-Info.plist` (iOS)
+
+3. Enable Authentication and Firestore in Firebase Console│   ├── QuranService.dart## ✨ Key Features
+
+
+
+## 📦 Dependencies│   ├── HadithService.dart
+
+
+
+### Core Packages│   ├── PrayerService.dart![Rating](https://img.shields.io/badge/RATING-⭐⭐⭐⭐⭐-yellow?style=flat-square)
+
+```yaml
+
+flutter: sdk: flutter│   ├── AuthService.dart
+
+get: ^4.6.6                   # State management
+
+http: ^1.4.0                  # API requests│   └── ChatService.dart### 🕐 Prayer Times & Qibla
+
+firebase_core: ^3.15.2       # Firebase integration
+
+shared_preferences: ^2.3.2   # Local storage└── widgets/                     # Reusable components
+
+```
+
+    ├── prayer_time_card.dart- **Accurate prayer timings** based on your location![Users](https://img.shields.io/badge/ACTIVE%20USERS-5K+-blue?style=flat-square)  
+
+### UI Packages
+
+```yaml    ├── quran_verse_card.dart
+
+flutter_screenutil: ^5.9.3   # Responsive design
+
+google_fonts: ^6.2.1         # Arabic fonts    ├── hadith_card.dart- **Qibla direction** with compass integration  
+
+lottie: ^3.3.1               # Loading animations
+
+animate_do: ^3.3.9           # Page transitions    └── qibla_compass.dart
+
+flutter_svg: ^2.0.10+1      # Islamic icons
+
+``````- **Beautiful Adhan notifications** with multiple reciters
+
+
+
+### Islamic Features
+
+```yaml
+
+just_audio: ^0.9.46          # Audio playback## 🚀 Getting Started- **Monthly prayer calendar** view
+
+geolocator: ^13.0.4          # Location services
+
+flutter_qiblah: ^2.3.0      # Qibla direction
+
+hijri: ^3.0.0                # Hijri calendar
+
+```### Prerequisites- **Prayer tracking** and habit building</div></div>  [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
+
+
+
+## 🎯 Project Structure- **Flutter SDK**: 3.5.1 or higher
+
+
+
+### State Management- **Dart SDK**: 3.2 or higher
+
+- **GetX Pattern**: Clean separation of business logic and UI
+
+- **Multiple Controllers**: Specialized controllers for different features- **Android Studio** / **VS Code** with Flutter extensions
+
+- **Reactive UI**: Automatic updates when prayer times or content changes
+
+- **Firebase Account** for backend services### 📚 Holy Quran
+
+### API Integration
+
+- **Islamic APIs**: Centralized API communication for authentic content- **Git** for version control
+
+- **Error Handling**: Robust error management with user feedback
+
+- **Caching Strategy**: Efficient data caching for offline Islamic content- **Complete Quran** with beautiful Arabic typography
+
+
+
+### Navigation### Installation
+
+- **Named Routes**: Clean navigation structure
+
+- **Deep Linking**: Support for direct screen access- **Multiple translations** in 20+ languages---
+
+- **Smooth Transitions**: Custom page transitions with Islamic aesthetics
+
+1. **Clone the repository**
+
+## 🤝 Contributing
+
+   ```bash- **Audio recitations** by renowned Qaris
+
+We welcome contributions! Please follow these steps:
+
+   git clone https://github.com/AbduLlAh72727272/ALLAH_EVERYWHERE.git
+
+1. **Fork the repository**
+
+2. **Create your feature branch**   cd ALLAH_EVERYWHERE- **Verse-by-verse highlighting** during audio playback
+
+   ```bash
+
+   git checkout -b feature/amazing-feature   ```
+
+   ```
+
+3. **Commit your changes**- **Bookmarks and notes** for personal study
+
+   ```bash
+
+   git commit -m 'Add some amazing feature'2. **Install dependencies**
+
+   ```
+
+4. **Push to the branch**   ```bash- **Advanced search** by keywords or topics## 🌟 **Why Choose Allah Everywhere?**## 📖 About  [![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com/)  <h3>A comprehensive Islamic companion app built with Flutter</h3>
+
+   ```bash
+
+   git push origin feature/amazing-feature   flutter pub get
+
+   ```
+
+5. **Open a Pull Request**   ```
+
+
+
+### Code Style
+
+- Follow [Dart Style Guide](https://dart.dev/guides/language/effective-dart/style)
+
+- Use meaningful variable and function names3. **Set up Firebase**### 📜 Authentic Hadiths
+
+- Add comments for complex Islamic calculations
+
+- Ensure all tests pass before submitting   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+
+
+
+## 📋 Todo   - Add your `google-services.json` to `android/app/`- **Major collections**: Bukhari, Muslim, Abu Dawood, Tirmidhi, Nasai, Ibn Majah
+
+
+
+- [ ] **Web Platform**: Progressive web app support   - Add your `GoogleService-Info.plist` to `ios/Runner/`
+
+- [ ] **Offline Quran**: Complete offline Quran storage
+
+- [ ] **Advanced Search**: AI-powered verse and hadith search   - Update `lib/firebase_options.dart` with your configuration- **Original Arabic text** with accurate translations<table>
+
+- [ ] **Community Features**: Connect Muslims worldwide
+
+- [ ] **Islamic Education**: Structured learning modules
+
+- [ ] **Widget Support**: Home screen prayer time widgets
+
+- [ ] **Multi-language**: Extended language support4. **Configure APIs**- **Topic-based categorization** for easy browsing
+
+- [ ] **Apple Watch**: Prayer reminders on wearables
+
+   - The app uses multiple Islamic APIs (AlQuran.cloud, Hadith API, Aladhan)
+
+## 🐛 Known Issues
+
+   - APIs are pre-configured but you can customize endpoints in services- **Hadith authenticity grading** (Sahih, Hasan, Daif)<tr>
+
+- **Audio Player**: Occasional loading delays on slower connections
+
+- **GPS Accuracy**: Prayer times may vary based on location precision
+
+- **Arabic Fonts**: Minor rendering delays on first app launch
+
+- **Background Sync**: Limited background refresh on iOS5. **Run the app**- **Personal favorites** and sharing capabilities
+
+
+
+## 📄 License   ```bash
+
+
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.   flutter run<td width="33%" align="center">Allah Everywhere is a comprehensive Islamic mobile application designed to provide Muslims with essential religious tools and resources. The app offers a seamless experience for prayer times, Quran reading, Islamic knowledge, and spiritual guidance.  [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
+
+
+
+## 🙏 Acknowledgments   ```
+
+
+
+- **Allah (SWT)** for guidance and blessings throughout this project### 🎓 Islamic Knowledge
+
+- **AlQuran Cloud** for providing authentic Quranic text and audio
+
+- **Hadith API** for maintaining authentic hadith collections### Build for Production
+
+- **Aladhan** for accurate prayer time calculations
+
+- **Flutter Team** for the amazing framework- **99 Names of Allah** with meanings and benefits
+
+- **Open Source Community** for the excellent packages used
 
 ```bash
 
+## 📞 Contact
+
 # Android APK- **Duas for daily life** with Arabic text and transliteration
 
-flutter build apk --release
+**Developer**: Muhammad Abdullah Waseem  
+
+**Email**: muammad112266@gmail.com  flutter build apk --release
+
+
 
 - **Islamic calendar** with important dates### 🎯 **COMPLETE**
 
+---
+
 # Android App Bundle
 
-flutter build appbundle --release- **Prophetic medicine** (Tibb-e-Nabwi) guidance
+<div align="center">
 
+  <p>Made with ❤️ and Flutter</p>flutter build appbundle --release- **Prophetic medicine** (Tibb-e-Nabwi) guidance
 
+  <p>⭐ Star this repo if you found it helpful!</p>
+
+</div>
 
 # iOS (macOS required)- **Fiqh rulings** and Islamic jurisprudence**Everything you need**  
 
