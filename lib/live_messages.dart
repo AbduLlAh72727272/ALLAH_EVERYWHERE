@@ -121,9 +121,10 @@ class _LiveMessagesScreenState extends State<LiveMessagesScreen> {
       onTap: () {
 
         Get.to(() => ChatScreen(
-          userName: userName,
-          avatar: 'https://example.com/avatar.jpg',
-          initialMessage: message,
+          chatId: 'chat_${DateTime.now().millisecondsSinceEpoch}',
+          alimName: 'Alim Scholar',
+          alimProfilePicture: 'https://example.com/alim_avatar.jpg',
+          isAlimOnline: true,
         ));
       },
       child: Container(

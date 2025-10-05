@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../services/QuranServices.dart';
+import '../services/QuranService.dart';
 
 class QuranController extends GetxController {
   var surahList = <Map<String, dynamic>>[].obs;
@@ -12,8 +12,6 @@ class QuranController extends GetxController {
   var lastReadSurahId = 0.obs;
   var lastReadAyah = 1.obs; // Default to Ayah 1
 
-  final QuranService _quranService = QuranService();
-
   @override
   void onInit() {
     fetchSurahs();
@@ -23,9 +21,21 @@ class QuranController extends GetxController {
   Future<void> fetchSurahs() async {
     try {
       isLoading(true);
-      final List<Map<String, dynamic>> data = await _quranService.fetchSurahs();
-      surahList.value = data;
-      filteredSurahList.value = data; // Initially set filtered list to all surahs
+      
+      // Generate Surah list from local data since we have the utility methods
+      List<Map<String, dynamic>> surahs = [];
+      for (int i = 1; i <= 114; i++) {
+        surahs.add({
+          'surahName': QuranService.getSurahName(i),
+          'surahNameArabic': 'سورة ${QuranService.getSurahName(i)}',
+          'surahNameTranslation': QuranService.getSurahName(i),
+          'totalAyah': QuranService.getSurahVerseCount(i),
+          'surahId': i,
+        });
+      }
+      
+      surahList.value = surahs;
+      filteredSurahList.value = surahs; // Initially set filtered list to all surahs
     } catch (e) {
       errorMessage.value = 'Error fetching data';
     } finally {

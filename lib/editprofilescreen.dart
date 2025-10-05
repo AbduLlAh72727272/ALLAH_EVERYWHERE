@@ -1,4 +1,5 @@
-import 'dart:io'; // Import this for working with File
+import 'dart:io';
+import 'package:allah_every_where/services/AuthService.dart';
 import 'package:allah_every_where/utils/utils/constraints/image_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,121 +14,151 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  
   String userName = 'New User';
-  String userEmail = 'abdullah@example.com';
+  String userEmail = '';
+  String userPhone = '';
   ImageProvider? _imageProvider;
   String? _profilePicUrl;
-
-  final TextEditingController _nameController = TextEditingController();
+  bool _isLoading = true;
+  bool _isSaving = false;
+  bool _isUploading = false;
 
   @override
   void initState() {
     super.initState();
-    _nameController.text = userName;
-    _getUserProfile();
+    _loadUserProfile();
   }
 
-  Future<void> _getUserProfile() async {
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      // Fetch user's profile data from Firestore
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
-
-      if (userDoc.exists) {
+  Future<void> _loadUserProfile() async {
+    try {
+      final userData = await AuthService.getUserData();
+      if (userData != null) {
         setState(() {
-          userName = userDoc['name'];
-          userEmail = userDoc['email'];
-          _profilePicUrl = userDoc['profilePicture'];
-          // Check if the URL is valid and not empty
+          userName = userData['name'] ?? 'User';
+          userEmail = userData['email'] ?? '';
+          userPhone = userData['phoneNumber'] ?? '';
+          _profilePicUrl = userData['photoUrl'];
+          
+          _nameController.text = userName;
+          _phoneController.text = userPhone;
+          
           _imageProvider = (_profilePicUrl != null && _profilePicUrl!.isNotEmpty)
               ? NetworkImage(_profilePicUrl!)
               : AssetImage(VoidImages.profile);
-          _nameController.text = userName;
+          
+          _isLoading = false;
         });
       }
+    } catch (e) {
+      setState(() => _isLoading = false);
+      _showErrorSnackBar('Failed to load profile: $e');
     }
   }
 
   Future<void> _pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? image = await picker.pickImage(
+        source: ImageSource.gallery,
+        maxWidth: 800,
+        maxHeight: 800,
+        imageQuality: 85,
+      );
 
-    if (image != null) {
-      // Upload the new profile picture to Firebase Storage
-      await _uploadProfilePicture(image);
+      if (image != null) {
+        await _uploadProfilePicture(image);
+      }
+    } catch (e) {
+      _showErrorSnackBar('Failed to pick image: $e');
     }
   }
 
   Future<void> _uploadProfilePicture(XFile image) async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
+    setState(() => _isUploading = true);
 
-    // Convert the image path (String) into a File
-    File imageFile = File(image.path);
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) throw 'No user logged in';
 
-    // Create a reference to Firebase Storage
-    final storageRef = FirebaseStorage.instance.ref().child('profile_pictures/${user.uid}');
+      File imageFile = File(image.path);
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_pictures/${user.uid}_${DateTime.now().millisecondsSinceEpoch}');
 
-    // Upload the image
-    UploadTask uploadTask = storageRef.putFile(imageFile);  // Pass the File object here
-    TaskSnapshot snapshot = await uploadTask;
+      UploadTask uploadTask = storageRef.putFile(imageFile);
+      TaskSnapshot snapshot = await uploadTask;
+      String downloadUrl = await snapshot.ref.getDownloadURL();
 
-    // Get the download URL after uploading
-    String downloadUrl = await snapshot.ref.getDownloadURL();
+      if (downloadUrl.isNotEmpty) {
+        await AuthService.updateUserProfile(photoUrl: downloadUrl);
+        
+        setState(() {
+          _profilePicUrl = downloadUrl;
+          _imageProvider = NetworkImage(_profilePicUrl!);
+        });
 
-    // Check if the download URL is valid
-    if (downloadUrl.isNotEmpty) {
-      // Update Firestore with the new profile picture URL
-      await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
-        'profilePicture': downloadUrl,
-      });
-
-      setState(() {
-        _profilePicUrl = downloadUrl;
-        _imageProvider = NetworkImage(_profilePicUrl!); // Update the profile picture
-      });
-    } else {
-      // Handle case where the URL is not valid
-      print("Failed to get a valid URL");
+        _showSuccessSnackBar('Profile picture updated successfully!');
+      }
+    } catch (e) {
+      _showErrorSnackBar('Failed to upload picture: $e');
+    } finally {
+      setState(() => _isUploading = false);
     }
   }
 
   Future<void> _saveProfile() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      // Fetch the user's document to check if it exists
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+    if (!_formKey.currentState!.validate()) return;
 
-      if (userDoc.exists) {
-        // If the document exists, update it
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
-          'name': _nameController.text,
-        });
-      } else {
-        // If the document doesn't exist, create it
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-          'name': _nameController.text,
-          'email': user.email,
-          'profilePicture': _profilePicUrl ?? '',  // Set profile picture URL if available
-        });
-      }
+    setState(() => _isSaving = true);
+
+    try {
+      await AuthService.updateUserProfile(
+        name: _nameController.text.trim(),
+        phoneNumber: _phoneController.text.trim(),
+      );
 
       setState(() {
-        userName = _nameController.text; // Update local variable
+        userName = _nameController.text.trim();
+        userPhone = _phoneController.text.trim();
       });
 
-      Navigator.pop(context); // Go back to previous screen
-    } else {
-      // Handle case where user is not authenticated
-      print("User not authenticated");
+      _showSuccessSnackBar('Profile updated successfully!');
+      Navigator.pop(context, true); // Return true to indicate successful update
+    } catch (e) {
+      _showErrorSnackBar('Failed to update profile: $e');
+    } finally {
+      setState(() => _isSaving = false);
     }
+  }
+
+  void _showSuccessSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: Text(
           'Edit Profile',
@@ -137,85 +168,284 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             color: Colors.black,
           ),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_outlined),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-      ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(VoidImages.otherscreen_background), // Update with your image
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 50.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: GestureDetector(
-                    onTap: _pickImage,
-                    child: CircleAvatar(
-                      radius: 60.r,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: 55.r,
-                        backgroundImage: _imageProvider ?? AssetImage(VoidImages.profile),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 60.h),
-
-                // Name TextField
-                TextField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: 'Name',
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                TextField(
-                  controller: TextEditingController(text: userEmail),
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                  ),
-                  readOnly: true,
-                ),
-                SizedBox(height: 30.h),
-
-                // Save Button
-                Center(
-                  child: ElevatedButton(
-                    onPressed: _saveProfile,
-                    child: Text('Save',style: TextStyle(color:Colors.white),),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(200.w, 50.h),
-                      backgroundColor: Colors.blue,
-                    ),
-                  ),
-                ),
-              ],
+        actions: [
+          TextButton(
+            onPressed: _isSaving ? null : _saveProfile,
+            child: Text(
+              'Save',
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.w600,
+                fontSize: 16.sp,
+              ),
             ),
           ),
-        ),
+        ],
       ),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: EdgeInsets.all(20.w),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    // Profile Picture Section
+                    Center(
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 5),
+                                ),
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              radius: 70.r,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                radius: 65.r,
+                                backgroundImage: _imageProvider ?? AssetImage(VoidImages.profile),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 5,
+                            right: 5,
+                            child: GestureDetector(
+                              onTap: _isUploading ? null : _pickImage,
+                              child: Container(
+                                width: 45,
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.white, width: 3),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: _isUploading
+                                    ? Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                          strokeWidth: 2,
+                                        ),
+                                      )
+                                    : Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 40.h),
+
+                    // Form Fields
+                    Card(
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.r),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(20.w),
+                        child: Column(
+                          children: [
+                            // Name Field
+                            TextFormField(
+                              controller: _nameController,
+                              decoration: InputDecoration(
+                                labelText: 'Full Name',
+                                prefixIcon: Icon(Icons.person_outline, color: Colors.blue),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  borderSide: BorderSide(color: Colors.grey.shade300),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  borderSide: BorderSide(color: Colors.blue),
+                                ),
+                                filled: true,
+                                fillColor: Colors.grey[50],
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter your full name';
+                                }
+                                if (value.length < 2) {
+                                  return 'Name must be at least 2 characters';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 20.h),
+
+                            // Email Field (Read-only)
+                            TextFormField(
+                              initialValue: userEmail,
+                              decoration: InputDecoration(
+                                labelText: 'Email Address',
+                                prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  borderSide: BorderSide(color: Colors.grey.shade300),
+                                ),
+                                filled: true,
+                                fillColor: Colors.grey[100],
+                              ),
+                              enabled: false,
+                            ),
+                            SizedBox(height: 20.h),
+
+                            // Phone Field
+                            TextFormField(
+                              controller: _phoneController,
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                labelText: 'Phone Number',
+                                hintText: 'Enter your phone number',
+                                prefixIcon: Icon(Icons.phone_outlined, color: Colors.blue),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  borderSide: BorderSide(color: Colors.grey.shade300),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  borderSide: BorderSide(color: Colors.blue),
+                                ),
+                                filled: true,
+                                fillColor: Colors.grey[50],
+                              ),
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                  if (value.length < 10) {
+                                    return 'Please enter a valid phone number';
+                                  }
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 40.h),
+
+                    // Save Button
+                    SizedBox(
+                      width: double.infinity,
+                      height: 55.h,
+                      child: ElevatedButton(
+                        onPressed: _isSaving ? null : _saveProfile,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
+                          elevation: 3,
+                        ),
+                        child: _isSaving
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  ),
+                                  SizedBox(width: 12.w),
+                                  Text(
+                                    'Saving...',
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Text(
+                                'Save Changes',
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+
+                    // Account Info Card
+                    Card(
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.r),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Account Information',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            SizedBox(height: 12.h),
+                            Row(
+                              children: [
+                                Icon(Icons.verified_user, 
+                                    color: AuthService.isEmailVerified ? Colors.green : Colors.orange,
+                                    size: 20),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  AuthService.isEmailVerified ? 'Email Verified' : 'Email Not Verified',
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: AuthService.isEmailVerified ? Colors.green : Colors.orange,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
     );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    super.dispose();
   }
 }
